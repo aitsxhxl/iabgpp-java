@@ -78,7 +78,9 @@ jobs:
       # Push commits and tags to GitHub
       - name: Push changes
         run: |
-          git config --global user.email "mayank@iabtechlab.com"
-          git config --global user.name "iabmayank"
-          git remote set-url origin https://iabmayank:${{ secrets.PAT }}@github.com/${{ github.repository }}.git
+          git status
+          git config user.email "mayank@iabtechlab.com"
+          git config user.name "Mayank Mishra"
           git push; git push --tags
+        env:
+          GITHUB_TOKEN: ${{secrets.PAT}}
