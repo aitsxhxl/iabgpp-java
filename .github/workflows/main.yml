@@ -61,6 +61,8 @@ jobs:
       # Commit the release version and create a tag
       - name: Commit and tag release
         run: |
+          git config user.email "mayank@iabtechlab.com"
+          git config user.name "Mayank Mishra"
           git add .
           git commit -m "${{ github.event.inputs.version }}"
           git tag "${{ github.event.inputs.version }}"
@@ -79,8 +81,6 @@ jobs:
       - name: Push changes
         run: |
           git status
-          git config user.email "mayank@iabtechlab.com"
-          git config user.name "iabmayank"
           git push; git push --tags
         env:
           GITHUB_TOKEN: ${{secrets.PAT}}
