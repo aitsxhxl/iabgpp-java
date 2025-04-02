@@ -80,7 +80,7 @@ jobs:
         run: |
           git status
           git config user.email "mayank@iabtechlab.com"
-          git config user.name "Mayank Mishra"
+          git config user.name "iabmayank"
           git push; git push --tags
         env:
           GITHUB_TOKEN: ${{secrets.PAT}}
