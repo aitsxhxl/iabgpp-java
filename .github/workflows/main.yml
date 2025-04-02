@@ -27,7 +27,10 @@ jobs:
 
       # Import GPG secret key for signing
       - name: Import GPG key
-        run: echo "${{ secrets.GPG_SECRET_KEY }}" | gpg --import --no-tty --batch
+        run: |
+          echo "${{ secrets.GPG_SECRET_KEY }}" > secret_key.asc
+          gpg --import --no-tty --batch secret_key.asc || { echo "GPG import failed"; cat secret_key.asc; exit 1; }
+          gpg --list-secret-keys
 
       # Generate settings.xml with Maven repository credentials
       - name: Create settings.xml
