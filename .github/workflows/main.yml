@@ -7,7 +7,7 @@ on:
         description: 'The release version (e.g., 3.2.4)'
         required: true
         default: ''
-	
+
 jobs:
   release:
     runs-on: ubuntu-latest
