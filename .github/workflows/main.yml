@@ -52,7 +52,11 @@ jobs:
 
       # Build and deploy the release
       - name: Deploy release
-        run: mvn clean deploy --settings ~/.m2/settings.xml -Dgpg.passphrase="${{ secrets.GPG_PASSPHRASE }}" -Prelease
+        run: |
+          echo "pinentry-mode loopback" > ~/.gnupg/gpg.conf
+          echo "use-agent" >> ~/.gnupg/gpg.conf
+          export GPG_TTY=$(tty || echo /dev/tty)
+          mvn clean deploy --settings ~/.m2/settings.xml -Dgpg.passphrase="${{ secrets.GPG_PASSPHRASE }}" -Prelease
 
       # Commit the release version and create a tag
       - name: Commit and tag release
